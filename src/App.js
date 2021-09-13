@@ -6,9 +6,9 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/?limit=4")
+    fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
       .then(reponse => reponse.json())
-      .then(allPoke => allPoke.results.forEach(el => fetchAllPoke(el.url)));
+      .then(allPoke => allPoke.results.forEach(el => fetchAllPoke(el.url)))
 
     function fetchAllPoke(pokemons) {
       fetch(pokemons)
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      <Cardlist pokemons={pokemonList} />
+      <Cardlist pokemons={pokemonList.sort((a, b) => a.id - b.id)} />
     </div>
   );
 }

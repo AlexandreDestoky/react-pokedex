@@ -1,10 +1,23 @@
-import React from 'react'
-import "./Card.css"
+import React from "react";
+import "./Card.css";
 
-export default function Card() {
+export default function Card(props) {
+  const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
   return (
-    <div>
-      <h1>Carte</h1>
+    <div className={"card-pokemon " + props.pokemon.types[0].type.name}>
+      <h2>{props.pokemon.name.toUpperCase()}</h2>
+      <p>
+        Type :{" "}
+        {props.pokemon.types
+          .map(el => capitalize(el.type.name))
+          .join(", ")}
+      </p>
+      <img
+        src={props.pokemon.sprites.other.dream_world.front_default}
+        alt={props.pokemon.name}
+        className="img-pokemon"
+      />
+      {/* {console.log(props.pokemon.sprites)} */}
     </div>
-  )
+  );
 }

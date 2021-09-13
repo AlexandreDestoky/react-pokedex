@@ -1,11 +1,11 @@
 import React from 'react'
 import "./Cardlist.css"
-import Card from '../Card/Card'
+import Card from '../Card/Card';
 
-export default function Cardlist() {
+export default function Cardlist(props) {
   return (
-    <div>
-      <Card/>
+    <div className="cardlist">
+      {props.pokemons.map(pokemon => <Card key={pokemon.id} pokemon={pokemon}/>)}
     </div>
   )
 }
