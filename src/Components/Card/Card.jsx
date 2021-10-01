@@ -19,7 +19,6 @@ export default function Card(props) {
         alt={props.pokemon.name}
         className="img-pokemon"
       />
-      {/* {console.log(props.pokemon.sprites)} */}
     </div>
   );
 }

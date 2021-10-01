@@ -4,10 +4,10 @@ import "./SearchBar.css";
 export default function SearchBar(props) {
   return (
     <input
-    className='SearchBar'
+    className='searchBar'
     type='search'
     placeholder={props.placeholder}
-    onChange={props.onSearchChange}
+    onChange={props.fctChange}
   />
   )
 }

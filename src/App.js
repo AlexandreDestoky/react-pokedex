@@ -5,7 +5,10 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]); //Liste des pokemons venant de l'API;
-
+  const [searchWord, setsearchWord] = useState("");
+  const pokemonListeRecherche = e => {
+    setsearchWord((e.target.value).toLowerCase());
+  };
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
@@ -22,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <h1>Pokedex React</h1>
-      <SearchBar placeholder="Cherchez un pokemon" />
-      <Cardlist pokemons={pokemonList.sort((a, b) => a.id - b.id)} />
+      <SearchBar placeholder="Cherchez un pokemon" fctChange={pokemonListeRecherche} />
+      <Cardlist pokemons={pokemonList.filter(pokemon => pokemon.name.includes(searchWord)).sort((a, b) => a.id - b.id)} />
     </div>
   );
 }
