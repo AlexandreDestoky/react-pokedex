@@ -1,14 +1,16 @@
 import "./App.css";
 import Cardlist from "./Components/Cardlist/Cardlist";
+import SearchBar from "./Components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]); //Liste des pokemons venant de l'API;
+
 
   useEffect(() => {
     fetch("https://pokeapi.co/api/v2/pokemon/?limit=151")
       .then(reponse => reponse.json())
-      .then(allPoke => allPoke.results.forEach(el => fetchAllPoke(el.url)))
+      .then(allPoke => allPoke.results.forEach(el => fetchAllPoke(el.url)));
 
     function fetchAllPoke(pokemons) {
       fetch(pokemons)
@@ -19,6 +21,8 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Pokedex React</h1>
+      <SearchBar placeholder="Cherchez un pokemon" />
       <Cardlist pokemons={pokemonList.sort((a, b) => a.id - b.id)} />
     </div>
   );
